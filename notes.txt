@@ -1,0 +1,56 @@
+try {
+  await registerUser(formData);
+} catch (error) {
+  // Is message a string or array?
+  if (Array.isArray(error.response.data.message)) {
+    // Validation errors
+    error.response.data.message.forEach(msg => {
+      // Parse string to find field name - fragile!
+      if (msg.includes('email')) {
+        setEmailError(msg);
+      } else if (msg.includes('password')) {
+        setPasswordError(msg);
+      }
+    });
+  } else if (typeof error.response.data.message === 'string') {
+    // Business logic error
+    setGeneralError(error.response.data.message);
+  } else {
+    // Unknown error format
+    setGeneralError('Something went wrong');
+  }
+}
+
+
+
+
+
+
+// Dto
+{
+    "errors": [
+        {"message": "invalide email",  "field": "email"}
+    ]
+}
+
+// other exceptions
+{
+    "errors": [
+        {"message": "user not found"}
+    ]
+}
+
+
+try {
+  await registerUser(formData);
+} catch (error) {
+  // Always the same structure!
+  error.response.data.errors.forEach(err => {
+    if (err.field) {
+      formFields[err.field].showError(err.message);
+    } else {
+      setGeneralError(err.message);
+    }
+  });
+}
+
