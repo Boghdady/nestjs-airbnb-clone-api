@@ -1,0 +1,21 @@
+info:
+  name: create-hello
+  type: http
+  seq: 2
+
+http:
+  method: POST
+  url: http://localhost:3000/create
+  body:
+    type: json
+    data: |-
+      {
+        "email": "ahmed"
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
