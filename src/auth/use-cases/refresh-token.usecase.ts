@@ -8,6 +8,8 @@ import { InjectModel } from '@nestjs/mongoose';
 import { RefreshToken } from '../schemas/refresh-token.schema';
 import { Model } from 'mongoose';
 import { JwtService } from '@nestjs/jwt';
+import { AuthResponseDto } from '../dtos/auth-response.dto';
+import { plainToInstance } from 'class-transformer';
 
 @Injectable()
 export class RefreshTokenUseCase {
@@ -18,7 +20,7 @@ export class RefreshTokenUseCase {
     private readonly jwtService: JwtService,
   ) {}
 
-  async execute(body: RefreshTokenDto) {
+  async execute(body: RefreshTokenDto): Promise<AuthResponseDto> {
     type RefreshTokenPayload = { userId: string; type: string };
     let decodedToken: RefreshTokenPayload;
     try {
@@ -50,6 +52,9 @@ export class RefreshTokenUseCase {
       throw new ForbiddenException('Invalid refresh token');
 
     // generate new tokens
-    return await this.generateTokensUsecase.execute(refreshTokenDoc.userId);
+    const { accessToken, refreshToken } =
+      await this.generateTokensUsecase.execute(refreshTokenDoc.userId);
+
+    return plainToInstance(AuthResponseDto, { accessToken, refreshToken });
   }
 }

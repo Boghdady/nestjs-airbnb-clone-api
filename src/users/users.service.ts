@@ -4,6 +4,7 @@ import { User } from './schemas/user.schema';
 import { Model, QueryFilter } from 'mongoose';
 import { CreateUserDto } from './dto/create-user.dto';
 import { CreateUserUsecase } from './use-cases/create-user.usecase';
+import { UserResponseDto } from './dto/user-response.dto';
 
 @Injectable()
 export class UsersService {
@@ -12,7 +13,7 @@ export class UsersService {
     private readonly createUserUsecase: CreateUserUsecase,
   ) {}
 
-  async create(body: CreateUserDto) {
+  async create(body: CreateUserDto): Promise<UserResponseDto> {
     return this.createUserUsecase.execute(body);
   }
 

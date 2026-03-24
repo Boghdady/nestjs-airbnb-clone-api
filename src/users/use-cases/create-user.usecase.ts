@@ -5,12 +5,14 @@ import * as bcrypt from 'bcryptjs';
 import { InjectModel } from '@nestjs/mongoose';
 import { User } from '../schemas/user.schema';
 import { Model } from 'mongoose';
+import { plainToInstance } from 'class-transformer';
+import { UserResponseDto } from '../dto/user-response.dto';
 
 @Injectable()
 export class CreateUserUsecase {
   constructor(@InjectModel(User.name) private userModel: Model<User>) {}
 
-  async execute(body: CreateUserDto) {
+  async execute(body: CreateUserDto): Promise<UserResponseDto> {
     const existingUserByEmail = await this.userModel.findOne({
       email: body.email,
     });
@@ -26,9 +28,11 @@ export class CreateUserUsecase {
 
     const hashedPassword = await bcrypt.hash(body.password, 10);
 
-    return await this.userModel.create({
+    const createdUser = await this.userModel.create({
       ...body,
       password: hashedPassword,
     });
+
+    return plainToInstance(UserResponseDto, createdUser.toObject());
   }
 }
