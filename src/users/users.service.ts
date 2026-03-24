@@ -3,33 +3,17 @@ import { InjectModel } from '@nestjs/mongoose';
 import { User } from './schemas/user.schema';
 import { Model, QueryFilter } from 'mongoose';
 import { CreateUserDto } from './dto/create-user.dto';
-import { BadRequestException } from '../common/errors-handling/custom-exceptions/bad-request.exception';
-import * as bcrypt from 'bcryptjs';
+import { CreateUserUsecase } from './use-cases/create-user.usecase';
 
 @Injectable()
 export class UsersService {
-  constructor(@InjectModel(User.name) private userModel: Model<User>) {}
+  constructor(
+    @InjectModel(User.name) private userModel: Model<User>,
+    private readonly createUserUsecase: CreateUserUsecase,
+  ) {}
 
   async create(body: CreateUserDto) {
-    const existingUserByEmail = await this.userModel.findOne({
-      email: body.email,
-    });
-    if (existingUserByEmail)
-      throw new BadRequestException('Email already exists');
-
-    const existingUserByPhoneNumber = await this.userModel.findOne({
-      phoneNumber: body.phoneNumber,
-    });
-
-    if (existingUserByPhoneNumber)
-      throw new BadRequestException('Phone number already exists');
-
-    const hashedPassword = await bcrypt.hash(body.password, 10);
-
-    return await this.userModel.create({
-      ...body,
-      password: hashedPassword,
-    });
+    return this.createUserUsecase.execute(body);
   }
 
   async findOne(query: QueryFilter<User>) {

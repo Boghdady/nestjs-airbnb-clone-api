@@ -6,6 +6,15 @@ info:
 http:
   method: POST
   url: http://localhost:3000/auth/register
+  body:
+    type: json
+    data: |-
+      {
+        "name": "Ahmed",
+        "email": "ahmed@gmail.com",
+        "phoneNumber": "01006698834",
+        "password": "pass123"
+      }
   auth: inherit
 
 settings:
