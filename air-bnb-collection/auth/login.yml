@@ -1,16 +1,17 @@
 info:
-  name: create-hello
+  name: login
   type: http
   seq: 2
 
 http:
   method: POST
-  url: http://localhost:3000/create
+  url: http://localhost:3000/auth/login
   body:
     type: json
     data: |-
       {
-        "email": "ahmed"
+        "email": "ahmed@gmail.com",
+        "password": "pass123"
       }
   auth: inherit
 

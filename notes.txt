@@ -54,3 +54,8 @@ try {
   });
 }
 
+
+
+
+AuthService (signUp, signIn)
+signUp: create user & generate token

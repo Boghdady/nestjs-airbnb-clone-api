@@ -32,6 +32,7 @@ export class CustomExceptionFilter implements ExceptionFilter {
     }
 
     // unknown exceptions
+    console.log(exception);
     response.status(500).json({
       errors: [{ message: 'Internal Server Error' }],
     });

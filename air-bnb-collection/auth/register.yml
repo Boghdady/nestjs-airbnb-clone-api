@@ -1,0 +1,24 @@
+info:
+  name: register
+  type: http
+  seq: 1
+
+http:
+  method: POST
+  url: http://localhost:3000/auth/register
+  body:
+    type: json
+    data: |-
+      {
+        "name": "Ahmed",
+        "email": "ahmed@gmail.com",
+        "phoneNumber": "01006698834",
+        "password": "pass123"
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5

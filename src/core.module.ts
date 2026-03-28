@@ -10,6 +10,7 @@ import {
 } from 'nestjs-i18n';
 import path from 'node:path';
 import { EnvironmentInterface } from './common/configuration/environment.interface';
+import { MongooseModule } from '@nestjs/mongoose';
 
 @Module({
   imports: [
@@ -33,6 +34,13 @@ import { EnvironmentInterface } from './common/configuration/environment.interfa
         AcceptLanguageResolver,
         new HeaderResolver(['x-lang']),
       ],
+      inject: [ConfigService],
+    }),
+
+    MongooseModule.forRootAsync({
+      useFactory: (configService: ConfigService<EnvironmentInterface>) => ({
+        uri: configService.getOrThrow('mongodbUri'),
+      }),
       inject: [ConfigService],
     }),
   ],

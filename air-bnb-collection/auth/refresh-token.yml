@@ -1,0 +1,21 @@
+info:
+  name: refresh-token
+  type: http
+  seq: 3
+
+http:
+  method: POST
+  url: http://localhost:3000/auth/refresh-token
+  body:
+    type: json
+    data: |-
+      {
+        "refreshToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2OWMyMWRkNTY3YTQ0MTE5MTlmNzg1OTQiLCJ0eXBlIjoicmVmcmVzaCIsImlhdCI6MTc3NDMyOTMwMSwiZXhwIjoxNzc1NjI1MzAxfQ.BuhY37yV0SPGvI31Jv263rOhPhgLh5d0vtzMg-9ycsw"
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
