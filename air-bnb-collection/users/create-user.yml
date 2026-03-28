@@ -11,8 +11,8 @@ http:
     data: |-
       {
         "name": "Ahmed",
-        "email": "ahmed7@gmail.com",
-        "phoneNumber": "02426698834",
+        "email": "ahmed8@gmail.com",
+        "phoneNumber": "22426698834",
         "password": "pass123"
       }
   auth: inherit
