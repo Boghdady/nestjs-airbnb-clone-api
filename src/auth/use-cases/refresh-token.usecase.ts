@@ -4,18 +4,15 @@ import { ForbiddenException } from '../../common/errors-handling/custom-exceptio
 import { BadRequestException } from '../../common/errors-handling/custom-exceptions/bad-request.exception';
 import * as bcrypt from 'bcryptjs';
 import { GenerateTokensUsecase } from './generate-tokens.usecase';
-import { InjectModel } from '@nestjs/mongoose';
-import { RefreshToken } from '../schemas/refresh-token.schema';
-import { Model } from 'mongoose';
 import { JwtService } from '@nestjs/jwt';
 import { AuthResponseDto } from '../dtos/auth-response.dto';
 import { plainToInstance } from 'class-transformer';
+import { RefreshTokenRepository } from '../repository/refresh-token.repository';
 
 @Injectable()
 export class RefreshTokenUseCase {
   constructor(
-    @InjectModel(RefreshToken.name)
-    private refreshTokenModel: Model<RefreshToken>,
+    private readonly refreshTokenRepository: RefreshTokenRepository,
     private readonly generateTokensUsecase: GenerateTokensUsecase,
     private readonly jwtService: JwtService,
   ) {}
@@ -36,7 +33,7 @@ export class RefreshTokenUseCase {
       throw new BadRequestException('Invalid refresh token');
 
     // find refresh token from db
-    const refreshTokenDoc = await this.refreshTokenModel.findOne({
+    const refreshTokenDoc = await this.refreshTokenRepository.findOne({
       userId: decodedToken.userId,
     });
 

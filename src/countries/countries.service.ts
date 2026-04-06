@@ -8,6 +8,7 @@ import { SoftDeleteCountryUsecase } from './use-cases/soft-delete-country.usecas
 import { UpdateCountryUsecase } from './use-cases/update-country.usecase';
 import { UpdateCountryDto } from './dtos/update-country.dto';
 import { FindAllDto } from './dtos/find-all.dto';
+import { PaginatedResult } from '../common/data-access';
 
 @Injectable()
 export class CountriesService {
@@ -27,7 +28,9 @@ export class CountriesService {
     return this.findCountryByIdUsecase.execute(id);
   }
 
-  async findAll(query: FindAllDto): Promise<CountryResponseDto[]> {
+  async findAll(
+    query: FindAllDto,
+  ): Promise<PaginatedResult<CountryResponseDto>> {
     return this.findAllCountriesUsecase.execute(query);
   }
 
