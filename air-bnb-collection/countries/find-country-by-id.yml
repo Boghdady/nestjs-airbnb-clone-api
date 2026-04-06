@@ -1,0 +1,15 @@
+info:
+  name: find-country-by-id
+  type: http
+  seq: 2
+
+http:
+  method: GET
+  url: http://localhost:3000/countries/69d25411227f60cf9f33bc28
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
