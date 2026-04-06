@@ -1,13 +1,11 @@
 import { Injectable } from '@nestjs/common';
-import { InjectModel } from '@nestjs/mongoose';
 import { Country } from '../schema/country.schema';
-import { Model, QueryFilter } from 'mongoose';
+import { QueryFilter } from 'mongoose';
 import { CountryResponseDto } from '../dtos/country-response.dto';
 import { plainToInstance } from 'class-transformer';
 import { FindAllDto } from '../dtos/find-all.dto';
 import { CountryRepository } from '../repository/country.repository';
 import { PaginatedResult } from '../../common/data-access';
-import { HydratedDocument } from 'mongoose';
 
 @Injectable()
 export class FindAllCountriesUsecase {
@@ -24,18 +22,9 @@ export class FindAllCountriesUsecase {
       page: query?.page,
       limit: query?.limit,
       ignoreLimit: query?.ignoreLimit,
+      lean: true,
     });
 
-    const countries = plainToInstance(
-      CountryResponseDto,
-      result.data.map((doc: HydratedDocument<Country>) => doc.toObject()),
-    );
-
-    return new PaginatedResult(
-      countries,
-      result.totalCount,
-      result.page,
-      result.limit,
-    );
+    return plainToInstance(PaginatedResult<CountryResponseDto>, result);
   }
 }

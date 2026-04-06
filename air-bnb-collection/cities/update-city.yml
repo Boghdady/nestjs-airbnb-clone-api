@@ -1,0 +1,22 @@
+info:
+  name: update-city
+  type: http
+  seq: 4
+
+http:
+  method: PATCH
+  url: http://localhost:3000/cities
+  body:
+    type: json
+    data: |-
+      {
+        "name": "اربيل",
+        "country": "69d3a90a85613dfa2ba198f8"
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5

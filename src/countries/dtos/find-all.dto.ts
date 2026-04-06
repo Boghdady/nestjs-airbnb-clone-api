@@ -1,6 +1,7 @@
 import { IsOptional, IsString } from 'class-validator';
+import { PaginationDto } from '../../common/data-access/dto/pagination.dto';
 
-export class FindAllDto {
+export class FindAllDto extends PaginationDto {
   @IsOptional()
   @IsString()
   name: string;
@@ -8,13 +9,4 @@ export class FindAllDto {
   @IsOptional()
   @IsString()
   countryCode: string;
-
-  @IsOptional()
-  page?: number;
-
-  @IsOptional()
-  limit?: number;
-
-  @IsOptional()
-  ignoreLimit?: boolean;
 }

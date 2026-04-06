@@ -1,0 +1,15 @@
+info:
+  name: delete-city-by-id
+  type: http
+  seq: 5
+
+http:
+  method: DELETE
+  url: http://localhost:3000/cities/69d3bee05a909e39f4649f21
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
