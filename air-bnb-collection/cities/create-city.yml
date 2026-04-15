@@ -10,8 +10,8 @@ http:
     type: json
     data: |-
       {
-        "name": "Ismalia",
-        "country": ""
+        "name": "اربيل",
+        "country": "69d3a90a85613dfa2ba198f8"
       }
   auth: inherit
 

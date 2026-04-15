@@ -1,20 +1,16 @@
 info:
-  name: update-country-by-id
+  name: update-currency-by-id
   type: http
   seq: 5
 
 http:
   method: PATCH
-  url: http://localhost:3000/countries/69d26e62a33483c6fafc28c2?name=
-  params:
-    - name: name
-      value: ""
-      type: query
+  url: http://localhost:3000/currencies/69e01e862930b5aa0c16a789
   body:
     type: json
     data: |-
       {
-        "name": "الاردن"
+        "name": "EG Pound"
         
       //   "countryCode": "jJJ"
       }

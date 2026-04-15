@@ -5,7 +5,27 @@ info:
 
 http:
   method: GET
-  url: http://localhost:3000/countries
+  url: http://localhost:3000/countries?name=Ir
+  params:
+    - name: name
+      value: Ir
+      type: query
+    - name: countryCode
+      value: Egppt
+      type: query
+      disabled: true
+    - name: limit
+      value: "1"
+      type: query
+      disabled: true
+    - name: page
+      value: "2"
+      type: query
+      disabled: true
+    - name: ignoreLimit
+      value: "true"
+      type: query
+      disabled: true
   auth: inherit
 
 settings:

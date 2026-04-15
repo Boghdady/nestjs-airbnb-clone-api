@@ -1,17 +1,17 @@
 info:
-  name: create-country
+  name: create-currency
   type: http
   seq: 1
 
 http:
   method: POST
-  url: http://localhost:3000/countries
+  url: http://localhost:3000/currencies
   body:
     type: json
     data: |-
       {
-        "name": "Iraq",
-        "countryCode": "IRQ"
+        "name": "Egyption Pound",
+        "currencyCode": "EGP"
       }
   auth: inherit
 

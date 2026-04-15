@@ -5,13 +5,13 @@ info:
 
 http:
   method: PATCH
-  url: http://localhost:3000/cities
+  url: http://localhost:3000/cities/69d3bec95a909e39f4649f16
   body:
     type: json
     data: |-
       {
-        "name": "اربيل",
-        "country": "69d3a90a85613dfa2ba198f8"
+        "name": "Cairo"
+      //   "country": "69d3a90a85613dfa2ba198f8"
       }
   auth: inherit
 
