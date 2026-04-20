@@ -3,15 +3,12 @@ import * as bcrypt from 'bcryptjs';
 import { JwtService } from '@nestjs/jwt';
 import { ConfigService } from '@nestjs/config';
 import { EnvironmentInterface } from '../../common/configuration/environment.interface';
-import { InjectModel } from '@nestjs/mongoose';
-import { RefreshToken } from '../schemas/refresh-token.schema';
-import { Model } from 'mongoose';
+import { RefreshTokenRepository } from '../repository/refresh-token.repository';
 
 @Injectable()
 export class GenerateTokensUsecase {
   constructor(
-    @InjectModel(RefreshToken.name)
-    private refreshTokenModel: Model<RefreshToken>,
+    private readonly refreshTokenRepository: RefreshTokenRepository,
     private readonly jwtService: JwtService,
     private readonly configService: ConfigService<EnvironmentInterface>,
   ) {}
@@ -27,7 +24,7 @@ export class GenerateTokensUsecase {
     const hashedRefreshToken = await bcrypt.hash(refreshToken, 10);
 
     // update the refresh token for the userId if not exists create it
-    await this.refreshTokenModel.findOneAndUpdate(
+    await this.refreshTokenRepository.findOneAndUpdate(
       { userId },
       { refreshToken: hashedRefreshToken },
       { returnDocument: 'after', upsert: true },

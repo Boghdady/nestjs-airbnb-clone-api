@@ -1,0 +1,36 @@
+info:
+  name: find-all-cities
+  type: http
+  seq: 2
+
+http:
+  method: GET
+  url: http://localhost:3000/cities
+  params:
+    - name: name
+      value: ار
+      type: query
+      disabled: true
+    - name: country
+      value: 69d393dfeaa43756a30a26ca
+      type: query
+      disabled: true
+    - name: limit
+      value: "2"
+      type: query
+      disabled: true
+    - name: page
+      value: "2"
+      type: query
+      disabled: true
+    - name: ignoreLimit
+      value: "true"
+      type: query
+      disabled: true
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5

@@ -1,0 +1,22 @@
+info:
+  name: create-currency
+  type: http
+  seq: 1
+
+http:
+  method: POST
+  url: http://localhost:3000/currencies
+  body:
+    type: json
+    data: |-
+      {
+        "name": "Egyption Pound",
+        "currencyCode": "EGP"
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5

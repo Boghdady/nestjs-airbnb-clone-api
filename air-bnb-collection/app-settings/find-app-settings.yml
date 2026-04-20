@@ -1,0 +1,15 @@
+info:
+  name: find-app-settings
+  type: http
+  seq: 2
+
+http:
+  method: GET
+  url: http://localhost:3000/app-settings
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5

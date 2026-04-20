@@ -1,0 +1,15 @@
+info:
+  name: delete-country-by-id
+  type: http
+  seq: 4
+
+http:
+  method: DELETE
+  url: http://localhost:3000/countries/69d26b0cbbc6e7ede710b12a
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5

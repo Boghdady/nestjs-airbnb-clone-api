@@ -1,0 +1,23 @@
+info:
+  name: update-unit-category-by-id
+  type: http
+  seq: 5
+
+http:
+  method: PATCH
+  url: http://localhost:3000/unit-categories/69e0285198b3c8c68cc0c195
+  body:
+    type: json
+    data: |-
+      {
+        "name": "Studio"
+        
+      //   "countryCode": "jJJ"
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
