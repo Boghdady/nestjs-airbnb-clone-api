@@ -1,18 +1,11 @@
 info:
-  name: upsert-app-settings
+  name: find-app-settings
   type: http
-  seq: 1
+  seq: 2
 
 http:
-  method: PUT
+  method: GET
   url: http://localhost:3000/app-settings
-  body:
-    type: json
-    data: |-
-      {
-        "vatRate": 15,
-        "minPrice": 100
-      }
   auth: inherit
 
 settings:

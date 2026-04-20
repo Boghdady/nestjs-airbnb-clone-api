@@ -103,6 +103,7 @@ export class BaseRepository<T> {
   ) {
     const document = await this.model.findOne(filterQuery, undefined, {
       session: options?.session,
+      lean: true,
     });
 
     return document;

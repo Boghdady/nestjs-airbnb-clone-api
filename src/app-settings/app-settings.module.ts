@@ -6,6 +6,7 @@ import { AppSettingsSchema } from './schemas/app-settings.schema';
 import { ModelNames } from '../common/data-access';
 import { AppSettingsRepository } from './repositories/app-settings.repository';
 import { UpsertAppSettingsUseCase } from './usecases/upsert-app-settings.usecase';
+import { FindAppSettingsUseCase } from './usecases/find-app-settings.usecase';
 
 @Module({
   imports: [
@@ -20,6 +21,7 @@ import { UpsertAppSettingsUseCase } from './usecases/upsert-app-settings.usecase
     AppSettingsService,
     AppSettingsRepository,
     UpsertAppSettingsUseCase,
+    FindAppSettingsUseCase,
   ],
   controllers: [AppSettingsController],
 })
