@@ -5,11 +5,12 @@ info:
 
 http:
   method: GET
-  url: http://localhost:3000/currencies?name=EG
+  url: http://localhost:3000/currencies
   params:
     - name: name
       value: EG
       type: query
+      disabled: true
     - name: currencyCode
       value: EGP
       type: query

@@ -1,0 +1,22 @@
+info:
+  name: upsert-app-settings
+  type: http
+  seq: 1
+
+http:
+  method: PUT
+  url: http://localhost:3000/app-settings
+  body:
+    type: json
+    data: |-
+      {
+        "vateRate": 14,
+        "min": 100
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5

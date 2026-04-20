@@ -5,4 +5,5 @@ export enum ModelNames {
   UNIT_CATEGORIES = 'unit-categories',
   USERS = 'users',
   REFRESH_TOKENS = 'refresh-tokens',
+  APP_SETTINGS = 'app-settings',
 }
