@@ -8,6 +8,7 @@ import { JwtService } from '@nestjs/jwt';
 import { AuthResponseDto } from '../dtos/auth-response.dto';
 import { plainToInstance } from 'class-transformer';
 import { RefreshTokenRepository } from '../repository/refresh-token.repository';
+import { Roles } from '../../common/constants';
 
 @Injectable()
 export class RefreshTokenUseCase {
@@ -18,7 +19,11 @@ export class RefreshTokenUseCase {
   ) {}
 
   async execute(body: RefreshTokenDto): Promise<AuthResponseDto> {
-    type RefreshTokenPayload = { userId: string; type: string };
+    type RefreshTokenPayload = {
+      payload: { id: string; role: string };
+      type: string;
+    };
+
     let decodedToken: RefreshTokenPayload;
     try {
       // verify the refresh token
@@ -34,7 +39,7 @@ export class RefreshTokenUseCase {
 
     // find refresh token from db
     const refreshTokenDoc = await this.refreshTokenRepository.findOne({
-      userId: decodedToken.userId,
+      userId: decodedToken.payload.id,
     });
 
     if (!refreshTokenDoc) throw new ForbiddenException('Invalid refresh token');
@@ -50,7 +55,10 @@ export class RefreshTokenUseCase {
 
     // generate new tokens
     const { accessToken, refreshToken } =
-      await this.generateTokensUsecase.execute(refreshTokenDoc.userId);
+      await this.generateTokensUsecase.execute({
+        id: refreshTokenDoc.userId,
+        role: decodedToken.payload.role as Roles,
+      });
 
     return plainToInstance(AuthResponseDto, { accessToken, refreshToken });
   }

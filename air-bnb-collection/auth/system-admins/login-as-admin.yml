@@ -1,0 +1,23 @@
+info:
+  name: login-as-admin
+  type: http
+  seq: 4
+
+http:
+  method: POST
+  url: http://localhost:3000/auth/login
+  body:
+    type: json
+    data: |-
+      {
+        "email": "ahmed@gmail.com",
+        "password": "pass123",
+        "role": "user"
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5

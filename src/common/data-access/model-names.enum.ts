@@ -6,4 +6,5 @@ export enum ModelNames {
   USERS = 'users',
   REFRESH_TOKENS = 'refresh-tokens',
   APP_SETTINGS = 'app-settings',
+  SYSTEM_ADMINS = 'system-admins',
 }

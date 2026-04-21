@@ -13,6 +13,9 @@ import { LoginUseCase } from './use-cases/login.usecase';
 import { RefreshTokenUseCase } from './use-cases/refresh-token.usecase';
 import { ModelNames } from '../common/data-access';
 import { RefreshTokenRepository } from './repository/refresh-token.repository';
+import { LoginAsUserUsecase } from './use-cases/login-as-user.usecase';
+import { SystemAdminsModule } from '../system-admins/system-admins.module';
+import { LoginAsSystemAdminUsecase } from './use-cases/login-as-system-admin.usecase';
 
 @Module({
   imports: [
@@ -20,6 +23,7 @@ import { RefreshTokenRepository } from './repository/refresh-token.repository';
       { name: ModelNames.REFRESH_TOKENS, schema: RefreshTokenSchema },
     ]),
     UsersModule,
+    SystemAdminsModule,
     JwtModule.registerAsync({
       useFactory: (configService: ConfigService<EnvironmentInterface>) => ({
         secret: configService.getOrThrow('jwtSecret'),
@@ -37,6 +41,8 @@ import { RefreshTokenRepository } from './repository/refresh-token.repository';
     LoginUseCase,
     RefreshTokenUseCase,
     RefreshTokenRepository,
+    LoginAsUserUsecase,
+    LoginAsSystemAdminUsecase,
   ],
   controllers: [AuthController],
 })
