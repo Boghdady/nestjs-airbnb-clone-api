@@ -5,6 +5,7 @@ import { UsersService } from '../../users/users.service';
 import { GenerateTokensUsecase } from './generate-tokens.usecase';
 import { AuthResponseDto } from '../dtos/auth-response.dto';
 import { plainToInstance } from 'class-transformer';
+import { Roles } from '../../common/constants';
 
 @Injectable()
 export class RegisterUseCase {
@@ -18,7 +19,10 @@ export class RegisterUseCase {
 
     const createdUser = await this.usersService.create(createUserDto);
     const { accessToken, refreshToken } =
-      await this.generateTokensUsecase.execute(createdUser._id.toString());
+      await this.generateTokensUsecase.execute({
+        id: createdUser._id.toString(),
+        role: Roles.USER,
+      });
 
     return plainToInstance(AuthResponseDto, { accessToken, refreshToken });
   }

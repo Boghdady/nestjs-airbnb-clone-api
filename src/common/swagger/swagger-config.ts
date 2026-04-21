@@ -10,6 +10,12 @@ export class SwaggerConfig {
       .setVersion('1.0')
       .addTag(API_TAGS.AUTH)
       .addTag(API_TAGS.USERS)
+      .addTag(API_TAGS.COUNTRIES)
+      .addTag(API_TAGS.CITIES)
+      .addTag(API_TAGS.APP_SETTINGS)
+      .addTag(API_TAGS.CURRENCIES)
+      .addTag(API_TAGS.UNIT_CATEGORIES)
+      .addTag(API_TAGS.SYSTEM_ADMINS)
       .build();
 
     const documentFactory = () => SwaggerModule.createDocument(app, config);
