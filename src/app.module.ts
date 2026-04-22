@@ -8,6 +8,8 @@ import { CurrenciesModule } from './currencies/currencies.module';
 import { UnitCategoriesModule } from './unit-categories/unit-categories.module';
 import { AppSettingsModule } from './app-settings/app-settings.module';
 import { SystemAdminsModule } from './system-admins/system-admins.module';
+import { JwtAuthGuard } from './auth/guards/jwt-auth.guard';
+import { APP_GUARD } from '@nestjs/core';
 
 @Module({
   imports: [
@@ -21,5 +23,6 @@ import { SystemAdminsModule } from './system-admins/system-admins.module';
     AppSettingsModule,
     SystemAdminsModule,
   ],
+  providers: [{ provide: APP_GUARD, useClass: JwtAuthGuard }],
 })
 export class AppModule {}

@@ -45,5 +45,6 @@ import { LoginAsSystemAdminUsecase } from './use-cases/login-as-system-admin.use
     LoginAsSystemAdminUsecase,
   ],
   controllers: [AuthController],
+  exports: [JwtModule, UsersModule, SystemAdminsModule],
 })
 export class AuthModule {}

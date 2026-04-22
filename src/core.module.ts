@@ -12,8 +12,10 @@ import path from 'node:path';
 import { EnvironmentInterface } from './common/configuration/environment.interface';
 import { MongooseModule } from '@nestjs/mongoose';
 import { CustomExceptionFilter } from './common/errors-handling/filters/custom-exception.filter';
-import { APP_FILTER, APP_INTERCEPTOR } from '@nestjs/core';
+import { APP_FILTER, APP_GUARD, APP_INTERCEPTOR } from '@nestjs/core';
 import { LoggerInterceptor } from './common/interceptors';
+import { JwtAuthGuard } from './auth/guards/jwt-auth.guard';
+import { JwtModule } from '@nestjs/jwt';
 
 @Module({
   imports: [

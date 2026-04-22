@@ -9,9 +9,11 @@ import { RefreshTokenSwagger } from './swagger/refresh-token.swagger';
 import { API_TAGS } from '../common/swagger';
 import { ApiTags } from '@nestjs/swagger';
 import { AuthResponseDto } from './dtos/auth-response.dto';
+import { Public } from './decorators/public.decorator';
 
 @ApiTags(API_TAGS.AUTH)
 @Controller('auth')
+@Public()
 export class AuthController {
   private readonly logger = new Logger(AuthController.name);
 

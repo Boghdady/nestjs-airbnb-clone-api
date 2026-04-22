@@ -17,6 +17,6 @@ export class FindCityByIdUsecase {
 
     if (!city) throw new NotFoundException('City not found');
 
-    return plainToInstance(CityResponseDto, city.toObject());
+    return plainToInstance(CityResponseDto, city);
   }
 }
