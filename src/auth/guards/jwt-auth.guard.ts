@@ -17,8 +17,8 @@ import { IPrincipal } from '../interfaces/principal.interface';
 import { Reflector } from '@nestjs/core';
 import { IS_PUBLIC_KEY } from '../decorators/public.decorator';
 
-type RequestWithUser = Request & {
-  user: IPrincipal;
+export type RequestWithUser = Request & {
+  principal: IPrincipal;
 };
 
 @Injectable()
@@ -54,7 +54,7 @@ export class JwtAuthGuard implements CanActivate {
       const currentAccount: IPrincipal = await this.buildCurrentUser(payload);
 
       // 5) Attach User object to the request
-      request.user = currentAccount;
+      request.principal = currentAccount;
     } catch (error) {
       this.logger.error(error);
       throw new UnAuthorizedException('Invalid token');

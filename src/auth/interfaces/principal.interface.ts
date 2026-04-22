@@ -1,4 +1,4 @@
-interface CurrentUserData {
+export interface CurrentUserData {
   _id: string;
   name: string;
   email: string;
