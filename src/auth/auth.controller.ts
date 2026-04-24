@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Logger, Post, Req } from '@nestjs/common';
+import { Body, Controller, Get, Logger, Post } from '@nestjs/common';
 import { AuthService } from './auth.service';
 import { RegisterDto } from './dtos/register.dto';
 import { LoginDto } from './dtos/login.dto';
@@ -14,7 +14,6 @@ import {
   CurrentAccount,
   Principal,
 } from './decorators/current-account.decorator';
-import { IPrincipal } from './interfaces/principal.interface';
 
 @ApiTags(API_TAGS.AUTH)
 @Controller('auth')

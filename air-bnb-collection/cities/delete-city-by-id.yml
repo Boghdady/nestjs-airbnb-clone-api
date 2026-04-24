@@ -6,6 +6,9 @@ info:
 http:
   method: DELETE
   url: http://localhost:3000/cities/69d3bf0a5a909e39f4649f34
+  headers:
+    - name: Authorization
+      value: Bearer {{jwt}}
   auth: inherit
 
 settings:

@@ -5,7 +5,10 @@ info:
 
 http:
   method: GET
-  url: http://localhost:3000/auth/me
+  url: "{{URL}}/auth/me"
+  headers:
+    - name: Authorization
+      value: Bearer {{jwt}}
   auth: inherit
 
 settings:

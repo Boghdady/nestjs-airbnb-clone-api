@@ -6,6 +6,9 @@ info:
 http:
   method: PATCH
   url: http://localhost:3000/countries/69d26e62a33483c6fafc28c2?name=
+  headers:
+    - name: Authorization
+      value: Bearer {{jwt}}
   params:
     - name: name
       value: ""

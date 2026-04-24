@@ -6,6 +6,9 @@ info:
 http:
   method: GET
   url: http://localhost:3000/currencies/69e01e862930b5aa0c16a789
+  headers:
+    - name: Authorization
+      value: Bearer {{jwt}}
   auth: inherit
 
 settings:

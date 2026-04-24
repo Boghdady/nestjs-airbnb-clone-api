@@ -26,6 +26,8 @@ import {
   FindCountryByIdSwagger,
   UpdateCountrySwagger,
 } from './swagger';
+import { Roles } from '../common/constants';
+import { Authorize } from '../auth/decorators/roles.decorator';
 
 @ApiTags(API_TAGS.COUNTRIES)
 @Controller('countries')
@@ -34,6 +36,7 @@ export class CountriesController {
 
   @CreateCountrySwagger()
   @Post()
+  @Authorize(Roles.SYSTEM_ADMIN)
   async create(@Body() body: CreateCountryDto): Promise<CountryResponseDto> {
     return this.countriesService.create(body);
   }
@@ -57,12 +60,14 @@ export class CountriesController {
   @DeleteCountrySwagger()
   @Delete('/:id')
   @HttpCode(HttpStatus.NO_CONTENT)
+  @Authorize(Roles.SYSTEM_ADMIN)
   async deleteCountryById(@Param() param: CountryIdDto): Promise<void> {
     return this.countriesService.deleteById(param.id);
   }
 
   @UpdateCountrySwagger()
   @Patch('/:id')
+  @Authorize(Roles.SYSTEM_ADMIN)
   async update(
     @Param() param: CountryIdDto,
     @Body() body: UpdateCountryDto,

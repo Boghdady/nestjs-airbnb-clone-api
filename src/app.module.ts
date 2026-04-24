@@ -10,6 +10,7 @@ import { AppSettingsModule } from './app-settings/app-settings.module';
 import { SystemAdminsModule } from './system-admins/system-admins.module';
 import { JwtAuthGuard } from './auth/guards/jwt-auth.guard';
 import { APP_GUARD } from '@nestjs/core';
+import { RolesGuard } from './auth/guards/roles.guard';
 
 @Module({
   imports: [
@@ -23,6 +24,9 @@ import { APP_GUARD } from '@nestjs/core';
     AppSettingsModule,
     SystemAdminsModule,
   ],
-  providers: [{ provide: APP_GUARD, useClass: JwtAuthGuard }],
+  providers: [
+    { provide: APP_GUARD, useClass: JwtAuthGuard },
+    { provide: APP_GUARD, useClass: RolesGuard },
+  ],
 })
 export class AppModule {}

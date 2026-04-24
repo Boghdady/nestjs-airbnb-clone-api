@@ -5,17 +5,22 @@ info:
 
 http:
   method: POST
-  url: http://localhost:3000/auth/register
+  url: "{{URL}}/auth/register"
   body:
     type: json
     data: |-
       {
         "name": "Ali",
-        "email": "ali@gmail.com",
-        "phoneNumber": "01298989123",
+        "email": "khalid@gmail.com",
+        "phoneNumber": "01598989123",
         "password": "pass123"
       }
   auth: inherit
+
+runtime:
+  scripts:
+    - type: after-response
+      code: bru.setVar("jwt", res.body.accessToken);
 
 settings:
   encodeUrl: true

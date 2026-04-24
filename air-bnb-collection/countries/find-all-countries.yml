@@ -5,11 +5,15 @@ info:
 
 http:
   method: GET
-  url: http://localhost:3000/countries?name=Ir
+  url: http://localhost:3000/countries
+  headers:
+    - name: Authorization
+      value: Bearer {{jwt}}
   params:
     - name: name
       value: Ir
       type: query
+      disabled: true
     - name: countryCode
       value: Egppt
       type: query

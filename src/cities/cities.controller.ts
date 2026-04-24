@@ -9,7 +9,6 @@ import {
   Patch,
   Post,
   Query,
-  UseGuards,
 } from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
 import { CitiesService } from './cities.service';
@@ -26,6 +25,8 @@ import {
   FindCityByIdSwagger,
   UpdateCitySwagger,
 } from './swagger';
+import { Roles } from '../common/constants';
+import { Authorize } from '../auth/decorators/roles.decorator';
 
 @ApiTags(API_TAGS.CITIES)
 @Controller('cities')
@@ -33,6 +34,7 @@ export class CitiesController {
   constructor(private readonly citiesService: CitiesService) {}
 
   @CreateCitySwagger()
+  @Authorize(Roles.SYSTEM_ADMIN)
   @Post()
   async createCity(@Body() body: CreateCityDto): Promise<CityResponseDto> {
     return this.citiesService.createCity(body);
@@ -53,6 +55,7 @@ export class CitiesController {
   }
 
   @UpdateCitySwagger()
+  @Authorize(Roles.SYSTEM_ADMIN)
   @Patch('/:id')
   async updateCity(
     @Param('id') cityId: string,
@@ -62,6 +65,7 @@ export class CitiesController {
   }
 
   @DeleteCitySwagger()
+  @Authorize(Roles.SYSTEM_ADMIN)
   @Delete('/:id')
   @HttpCode(HttpStatus.NO_CONTENT)
   async deleteCity(@Param('id') cityId: string): Promise<void> {

@@ -1,0 +1,4 @@
+name: jwt
+variables:
+  - name: jwt
+    value: "{{jwt}}"

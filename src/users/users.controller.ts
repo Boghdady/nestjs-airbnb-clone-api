@@ -10,9 +10,9 @@ import { CreateUserSwagger } from './swagger';
 export class UsersController {
   constructor(private readonly usersService: UsersService) {}
 
-  @CreateUserSwagger()
-  @Post()
-  async create(@Body() body: CreateUserDto) {
-    return this.usersService.create(body);
-  }
+  // @CreateUserSwagger()
+  // @Post()
+  // async create(@Body() body: CreateUserDto) {
+  //   return this.usersService.create(body);
+  // }
 }

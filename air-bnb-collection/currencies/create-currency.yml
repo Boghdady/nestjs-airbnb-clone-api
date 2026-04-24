@@ -6,6 +6,9 @@ info:
 http:
   method: POST
   url: http://localhost:3000/currencies
+  headers:
+    - name: Authorization
+      value: Bearer {{jwt}}
   body:
     type: json
     data: |-

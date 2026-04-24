@@ -10,9 +10,14 @@ http:
     type: json
     data: |-
       {
-        "refreshToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2OWMyMWRkNTY3YTQ0MTE5MTlmNzg1OTQiLCJ0eXBlIjoicmVmcmVzaCIsImlhdCI6MTc3NDMyOTMwMSwiZXhwIjoxNzc1NjI1MzAxfQ.BuhY37yV0SPGvI31Jv263rOhPhgLh5d0vtzMg-9ycsw"
+        "refreshToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwYXlsb2FkIjp7ImlkIjoiNjllOTUzYzY1MWFhNmE5NDdhNzA3MTJmIiwicm9sZSI6InVzZXIifSwidHlwZSI6InJlZnJlc2giLCJpYXQiOjE3NzcwNDE5MjksImV4cCI6MTc3ODMzNzkyOX0.1Sr2Z4Kc__UFY73GHcG0EThMxTfBj75xQCuAHdBPnS8"
       }
   auth: inherit
+
+runtime:
+  scripts:
+    - type: after-response
+      code: bru.setVar("jwt", res.body.accessToken);
 
 settings:
   encodeUrl: true
