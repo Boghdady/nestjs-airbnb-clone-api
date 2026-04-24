@@ -6,12 +6,15 @@ info:
 http:
   method: POST
   url: http://localhost:3000/countries
+  headers:
+    - name: Authorization
+      value: Bearer {{jwt}}
   body:
     type: json
     data: |-
       {
-        "name": "Iraq",
-        "countryCode": "IRQ"
+        "name": "Jordan",
+        "countryCode": "JA"
       }
   auth: inherit
 

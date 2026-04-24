@@ -5,16 +5,21 @@ info:
 
 http:
   method: POST
-  url: http://localhost:3000/auth/login
+  url: "{{URL}}/auth/login"
   body:
     type: json
     data: |-
       {
-        "email": "ahmed@gmail.com",
+        "email": "admin@airbnb.com",
         "password": "pass123",
-        "role": "user"
+        "role": "admin"
       }
   auth: inherit
+
+runtime:
+  scripts:
+    - type: after-response
+      code: bru.setVar("jwt", res.body.accessToken);
 
 settings:
   encodeUrl: true

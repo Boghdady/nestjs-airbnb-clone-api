@@ -26,6 +26,8 @@ import {
   FindUnitCategoryByIdSwagger,
   UpdateUnitCategorySwagger,
 } from './swagger';
+import { Authorize } from '../auth/decorators/roles.decorator';
+import { Roles } from '../common/constants';
 
 @ApiTags(API_TAGS.UNIT_CATEGORIES)
 @Controller('unit-categories')
@@ -33,6 +35,7 @@ export class UnitCategoriesController {
   constructor(private readonly unitCategoriesService: UnitCategoriesService) {}
 
   @CreateUnitCategorySwagger()
+  @Authorize(Roles.SYSTEM_ADMIN)
   @Post()
   async create(
     @Body() body: CreateUnitCategoryDto,
@@ -57,6 +60,7 @@ export class UnitCategoriesController {
   }
 
   @DeleteUnitCategorySwagger()
+  @Authorize(Roles.SYSTEM_ADMIN)
   @Delete('/:id')
   @HttpCode(HttpStatus.NO_CONTENT)
   async deleteUnitCategoryById(
@@ -66,6 +70,7 @@ export class UnitCategoriesController {
   }
 
   @UpdateUnitCategorySwagger()
+  @Authorize(Roles.SYSTEM_ADMIN)
   @Patch('/:id')
   async update(
     @Param() param: UnitCategoryIdDto,

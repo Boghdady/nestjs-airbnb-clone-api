@@ -1,0 +1,4 @@
+name: airbnb-dev
+variables:
+  - name: URL
+    value: http://localhost:3000

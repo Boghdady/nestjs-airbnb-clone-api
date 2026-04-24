@@ -6,6 +6,9 @@ info:
 http:
   method: PATCH
   url: http://localhost:3000/cities/69d3bec95a909e39f4649f16
+  headers:
+    - name: Authorization
+      value: Bearer {{jwt}}
   body:
     type: json
     data: |-

@@ -6,6 +6,9 @@ info:
 http:
   method: GET
   url: http://localhost:3000/cities
+  headers:
+    - name: Authorization
+      value: Bearer {{jwt}}
   params:
     - name: name
       value: ار

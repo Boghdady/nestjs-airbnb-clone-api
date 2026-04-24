@@ -1,4 +1,4 @@
-import { Exclude, Expose, Transform } from 'class-transformer';
+import { Exclude, Expose } from 'class-transformer';
 import { ApiProperty } from '@nestjs/swagger';
 
 export class UserResponseDto {
@@ -8,10 +8,12 @@ export class UserResponseDto {
 
   @ApiProperty({ description: 'User full name', example: 'JOHN DOE' })
   @Expose()
-  @Transform(({ value }) => value.toUpperCase())
   name: string;
 
-  @ApiProperty({ description: 'User email address', example: 'john.doe@example.com' })
+  @ApiProperty({
+    description: 'User email address',
+    example: 'john.doe@example.com',
+  })
   @Expose()
   email: string;
 
@@ -19,7 +21,7 @@ export class UserResponseDto {
   @Expose()
   phoneNumber: string;
 
-  @Exclude()
+  // @Exclude()
   password: string;
 
   @Exclude()

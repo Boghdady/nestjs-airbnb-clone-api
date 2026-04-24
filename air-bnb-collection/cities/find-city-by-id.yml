@@ -5,7 +5,11 @@ info:
 
 http:
   method: GET
-  url: http://localhost:3000/cities/69d3bee05a909e39f4649f21
+  url: http://localhost:3000/cities/69d3bec95a909e39f4649f16
+  headers:
+    - name: Authorization
+      value: Bearer {{jwt}}
+      disabled: true
   auth: inherit
 
 settings:

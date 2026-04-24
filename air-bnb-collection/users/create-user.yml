@@ -5,7 +5,7 @@ info:
 
 http:
   method: POST
-  url: http://localhost:3000/users
+  url: "{{URL}}/users"
   body:
     type: json
     data: |-

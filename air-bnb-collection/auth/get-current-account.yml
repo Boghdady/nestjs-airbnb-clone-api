@@ -1,11 +1,11 @@
 info:
-  name: delete-country-by-id
+  name: get-current-account
   type: http
-  seq: 4
+  seq: 5
 
 http:
-  method: DELETE
-  url: http://localhost:3000/countries/69d26b0cbbc6e7ede710b12a
+  method: GET
+  url: "{{URL}}/auth/me"
   headers:
     - name: Authorization
       value: Bearer {{jwt}}
